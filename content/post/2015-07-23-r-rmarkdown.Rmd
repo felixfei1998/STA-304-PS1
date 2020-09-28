@@ -1,5 +1,5 @@
 ---
-title: "Barplot analyzation of COVID-19 cases in Toronto"
+title: "Plot analyzation of COVID-19 cases in Toronto"
 author: "Yuyu Fei"
 date: 2020-09-26T22:10:11-05:00
 categories: ["R"]
@@ -27,30 +27,54 @@ use barplot to observe the outcomes. Refer to the age group, by looking at plot 
 # Part 3 Limitations
 The limits of the data are that the dataset refreshes every weekend, therefore, the data of this week may appear differently with last week. It may bring inaccuracy since the data changed the weekend.
 
+```{r echo=FALSE,include=FALSE}
 
-#Plot
+library(opendatatoronto)
+library(dplyr)
+library(tidyverse)
 
-#plot 1-age group
+# get package
+package <- show_package("64b54586-6180-4485-83eb-81e8fae3b8fe")
+package
+
+# get all resources for this package
+resources <- list_package_resources("64b54586-6180-4485-83eb-81e8fae3b8fe")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+
+glimpse(data)
+```
+
+
+#Plot-1 Age Group
+```{r echo=FALSE,warning=FALSE}
 ggplot(data = data, aes(x=data$`Age Group`, fill= data$`Age Group`)) + geom_bar() + theme(text=element_text(size=10))
-
+```
 # People with ages between 20 to 29 years have the most numbers of infectious or probable cases which around 3000 cases. It is the column with yellow color. People with ages between 70 to 79 years old have the least numbers of infectious or probable cases which around 1000 cases which is the column with blue color.
 
 
-#plot 2-source of infection
+#Plot-2 
+```{r echo=FALSE,warning=FALSE}
 ggplot(data = data, aes(x=data$`Source of Infection`, fill= data$`Source of Infection`)) + geom_bar() + theme(text=element_text(size=10))
+```
+# Close contact and outbreak associated are the major two sources of infection of COVID-19. Close contact is the pink column with around 6500 cases and outbreak associated is the blue column with around 6000 cases. 
 
-# Close contact and outbreak associated are the major two source of infection of COVID-19. Close contact is the pink column with around 6500 cases and outbreak associated is the blue column with around 6000 cases. 
-
-#plot 3-FSA
+#Plot-3
+```{r echo=FALSE,warning=FALSE}
 ggplot(data = data, aes(x=data$FSA, fill= data$FSA)) + geom_bar() + theme(text=element_text(size=10))
+```
+# People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which are M4R to M5J.
 
-# People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which is M4R to M5J.
-
-#plot 4-Client Gender 
+#Plot-4
+```{r}
 ggplot(data = data, aes(x=data$`Client Gender`, fill= data$`Client Gender`)) + geom_bar() + theme(text=element_text(size=10))
-
+```
 # Female in pink color with around 8700 cases, male in bottle green with 7700 cases and unknown in pink color
-
 
 
 

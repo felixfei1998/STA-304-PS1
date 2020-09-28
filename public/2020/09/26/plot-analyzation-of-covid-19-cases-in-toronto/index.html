@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.75.1" />
 
 
-<title>Barplot analyzation of COVID-19 cases in Toronto - A Hugo website</title>
-<meta property="og:title" content="Barplot analyzation of COVID-19 cases in Toronto - A Hugo website">
+<title>Plot analyzation of COVID-19 cases in Toronto - A Hugo website</title>
+<meta property="og:title" content="Plot analyzation of COVID-19 cases in Toronto - A Hugo website">
 
 
   <link href='../../../../favicon.ico' rel='icon' type='image/x-icon'/>
@@ -19,6 +19,11 @@
 
 
 
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -60,7 +65,7 @@
     <span class="article-duration">5 min read</span>
     
 
-    <h1 class="article-title">Barplot analyzation of COVID-19 cases in Toronto</h1>
+    <h1 class="article-title">Plot analyzation of COVID-19 cases in Toronto</h1>
 
     
     <span class="article-date">2020-09-26</span>
@@ -88,27 +93,24 @@ use barplot to observe the outcomes. Refer to the age group, by looking at plot 
 <div id="part-3-limitations" class="section level1">
 <h1>Part 3 Limitations</h1>
 <p>The limits of the data are that the dataset refreshes every weekend, therefore, the data of this week may appear differently with last week. It may bring inaccuracy since the data changed the weekend.</p>
-<p>#Plot</p>
-<p>#plot 1-age group
-ggplot(data = data, aes(x=<code>Age Group</code>, fill=<code>Age Group</code>)) + geom_bar() + theme(text=element_text(size=10))</p>
-</div>
-<div id="people-with-ages-between-20-to-29-years-have-the-most-numbers-of-infectious-or-probable-cases-which-around-3000-cases.-it-is-the-column-with-yellow-color.-people-with-ages-between-70-to-79-years-old-have-the-least-numbers-of-infectious-or-probable-cases-which-around-1000-cases-which-is-the-column-with-blue-color." class="section level1">
-<h1>People with ages between 20 to 29 years have the most numbers of infectious or probable cases which around 3000 cases. It is the column with yellow color. People with ages between 70 to 79 years old have the least numbers of infectious or probable cases which around 1000 cases which is the column with blue color.</h1>
-<p>#plot 2-source of infection
-ggplot(data = data, aes(x=data<span class="math inline">\(`Source of Infection`, fill= data\)</span><code>Source of Infection</code>)) + geom_bar() + theme(text=element_text(size=10))</p>
-</div>
-<div id="close-contact-and-outbreak-associated-are-the-major-two-source-of-infection-of-covid-19.-close-contact-is-the-pink-column-with-around-6500-cases-and-outbreak-associated-is-the-blue-column-with-around-6000-cases." class="section level1">
-<h1>Close contact and outbreak associated are the major two source of infection of COVID-19. Close contact is the pink column with around 6500 cases and outbreak associated is the blue column with around 6000 cases.</h1>
-<p>#plot 3-FSA
-ggplot(data = data, aes(x=data<span class="math inline">\(FSA, fill= data\)</span>FSA)) + geom_bar() + theme(text=element_text(size=10))</p>
-</div>
-<div id="people-live-in-area-with-postal-code-m9a-to-m9w-contain-the-most-numbers-of-infectious-or-probable-cases-which-in-pink-color.-the-columns-in-blue-color-have-the-least-infectious-or-probable-cases-which-is-m4r-to-m5j." class="section level1">
-<h1>People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which is M4R to M5J.</h1>
-<p>#plot 4-Client Gender
-ggplot(data = data, aes(x=data<span class="math inline">\(`Client Gender`, fill= data\)</span><code>Client Gender</code>)) + geom_bar() + theme(text=element_text(size=10))</p>
-</div>
-<div id="female-in-pink-color-with-around-8700-cases-male-in-bottle-green-with-7700-cases-and-unknown-in-pink-color" class="section level1">
-<h1>Female in pink color with around 8700 cases, male in bottle green with 7700 cases and unknown in pink color</h1>
+<p>#Plot-1 Age Group
+<img src="../../../../post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+# People with ages between 20 to 29 years have the most numbers of infectious or probable cases which around 3000 cases. It is the column with yellow color. People with ages between 70 to 79 years old have the least numbers of infectious or probable cases which around 1000 cases which is the column with blue color.</p>
+<p>#Plot-2
+<img src="../../../../post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+# Close contact and outbreak associated are the major two sources of infection of COVID-19. Close contact is the pink column with around 6500 cases and outbreak associated is the blue column with around 6000 cases.</p>
+<p>#Plot-3
+<img src="../../../../post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+# People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which are M4R to M5J.</p>
+<p>#Plot-4</p>
+<pre class="r"><code>ggplot(data = data, aes(x=data$`Client Gender`, fill= data$`Client Gender`)) + geom_bar() + theme(text=element_text(size=10))
+## Warning: Use of `data$`Client Gender`` is discouraged. Use `Client Gender`
+## instead.
+
+## Warning: Use of `data$`Client Gender`` is discouraged. Use `Client Gender`
+## instead.</code></pre>
+<p><img src="../../../../post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+# Female in pink color with around 8700 cases, male in bottle green with 7700 cases and unknown in pink color</p>
 <p>#Reference</p>
 <p>Open Data Dataset. (n.d.). Retrieved September 28, 2020, from <a href="https://open.toronto.ca/dataset/covid-19-cases-in-toronto/" class="uri">https://open.toronto.ca/dataset/covid-19-cases-in-toronto/</a></p>
 <p>Canada, P. (2020, August 31). Government of Canada. Retrieved September 28, 2020, from <a href="https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html" class="uri">https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html</a></p>
@@ -135,6 +137,18 @@ ggplot(data = data, aes(x=data<span class="math inline">\(`Client Gender`, fill=
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 <script src="../../../../js/math-code.js"></script>
