@@ -71,7 +71,7 @@ ggplot(data = data, aes(x=data$FSA, fill= data$FSA)) + geom_bar() + theme(text=e
 # People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which are M4R to M5J.
 
 #Plot-4
-```{r}
+```{r echo=FALSE,warning=FALSE}
 ggplot(data = data, aes(x=data$`Client Gender`, fill= data$`Client Gender`)) + geom_bar() + theme(text=element_text(size=10))
 ```
 # Female in pink color with around 8700 cases, male in bottle green with 7700 cases and unknown in pink color
