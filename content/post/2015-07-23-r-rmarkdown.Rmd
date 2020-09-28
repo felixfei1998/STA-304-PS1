@@ -1,0 +1,61 @@
+---
+title: "Barplot analyzation of COVID-19 cases in Toronto"
+author: "Yuyu Fei"
+date: 2020-09-26T22:10:11-05:00
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+# Abstraction
+In the report, I analyze the dataset of infectious or probable cases in Toronto. Through a detailed discussion of four variables which are age group, client gender, FSA, and source of infection, the different outcomes of these variables have different numbers of infectious or probable cases. It provides us with ideas about COVID-19 virus which can protect us from it.
+
+
+# Part 1 Introduction
+COVID-19, fully named Coronavirus disease 2019. As a serious global pandemic, the first case of COVID-19 was recognized in early 
+December 2019 and spread around the world rapidly. The first case in Toronto was reported in January 2020 and rising to 17,000 cases right now. 
+In the total 17000 cases, those patients contain with different age groups, genders, regions and so on. Moreover, the source of infection is also varied among different patients. In the report, we will mainly focus on four variables such as age group, FSA, source of infection, and client gender. Through barplot analysis, we find that most infectious patients belong to certain age groups, regions and gender and they are infected for certain reasons. In the following data introduction, we will talk about them with details. After analyzation, we can learn more about the COVID-19 virus which can protect us from this global pandemic.
+
+
+# Part 2 Data Introduction
+The dataset collects by Toront Public Health, all the data retrieved from the provincial communicable disease reporting system(iPHIS) and Toronto's custom COVID-19 case management system (CORES). It records cases in Toronto from January until right now and refreshes every week. Moreover, the dataset contains infectious and probable patients' personal information such as age, gender, and so on. Also, it includes medical information such as reported date, hospitalization, and so on. The dataset contains a total of 18 variables, in the data introduction, I mainly focus on FSA, Client Gender, Source of Infection, and Age Group. The four variables belong to a single categorical variable, therefore, I
+use barplot to observe the outcomes. Refer to the age group, by looking at plot 1, the age group ranges from 19 years and younger to 90 years and older and separate into 10 columns. From the plot, we can analyze that ages between 70 to 79 years old have the least number of patients which around 1200 people, and people between 20 to 29 years old have the most infectious patients which around 3000 people. Therefore, People range from 20 to 59 years old are the susceptible population to the virus. Plot 2 refers to the source of infection, certain reasons are causing the infection such as close contact, community, healthcare, institutional, travel, outbreak associated, and unknown reason. From the plot, we evaluate that the larger numbers of the source of infection come from close contact and outbreak associated. Both of them near 6000 cases. Community is another serious source of infection which bring 2500 cases. FSA fully named the forward sortation area which is the first three characters of postal code. In plot 3, columns with pink colors have the most numbers of counts. Specifically, postal codes from M9A to M9W have the most number of infectious or probable cases, people live in this certain area is dangerous to the virus than people who live in other areas. People who live in M3J to M3L is also dangerous to the virus, they have around 750 cases of infectious or probable. Plot 4 refers to the gender of infectious or probable cases. From plot 4, there are approximately 8700 cases of infectious or probable for females and 7700 cases for males. Numerically, females have more cases than males. There are also less than 200 cases with unknown gender. 
+
+
+# Part 3 Limitations
+The limits of the data are that the dataset refreshes every weekend, therefore, the data of this week may appear differently with last week. It may bring inaccuracy since the data changed the weekend.
+
+
+#Plot
+
+#plot 1-age group
+ggplot(data = data, aes(x=data$`Age Group`, fill= data$`Age Group`)) + geom_bar() + theme(text=element_text(size=10))
+
+# People with ages between 20 to 29 years have the most numbers of infectious or probable cases which around 3000 cases. It is the column with yellow color. People with ages between 70 to 79 years old have the least numbers of infectious or probable cases which around 1000 cases which is the column with blue color.
+
+
+#plot 2-source of infection
+ggplot(data = data, aes(x=data$`Source of Infection`, fill= data$`Source of Infection`)) + geom_bar() + theme(text=element_text(size=10))
+
+# Close contact and outbreak associated are the major two source of infection of COVID-19. Close contact is the pink column with around 6500 cases and outbreak associated is the blue column with around 6000 cases. 
+
+#plot 3-FSA
+ggplot(data = data, aes(x=data$FSA, fill= data$FSA)) + geom_bar() + theme(text=element_text(size=10))
+
+# People live in area with postal code M9A to M9W contain the most numbers of infectious or probable cases which in pink color. The columns in blue color have the least infectious or probable cases which is M4R to M5J.
+
+#plot 4-Client Gender 
+ggplot(data = data, aes(x=data$`Client Gender`, fill= data$`Client Gender`)) + geom_bar() + theme(text=element_text(size=10))
+
+# Female in pink color with around 8700 cases, male in bottle green with 7700 cases and unknown in pink color
+
+
+
+
+#Reference
+
+Open Data Dataset. (n.d.). Retrieved September 28, 2020, from https://open.toronto.ca/dataset/covid-19-cases-in-toronto/
+
+Canada, P. (2020, August 31). Government of Canada. Retrieved September 28, 2020, from https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html
